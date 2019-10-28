@@ -1,5 +1,13 @@
 <?php
 
+// DB Tables
+//	Tickets
+//		- Ticket_ID, Name, Status, Owner
+//
+//  Comments
+//		- ID, TID, Comment, Date
+//		- TID->Tickets.Ticket_ID
+
 // Functions to interact with the database (In Progress)
 
 function add_ticket(assigner, email) {
