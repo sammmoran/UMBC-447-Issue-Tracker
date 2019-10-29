@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Ticket </title>
+    </head>
+	<style>
+		body {
+			text-align: center;
+			background-color: blue;
+			}
+			
+			
+		form {
+		
+			display: inline-block;
+			
+			}
+			
+		
+		
+		form.solid {
+			padding-top: 50px;
+			padding-right: 30px;
+			padding-bottom: 50px;
+			padding-left: 80px;
+			height: 250px;
+			width: 25%;
+			border-style: solid;
+			border-radius: 25px;
+			background-color: white;
+			}
+</style>
+	<body>
+              <h2> Create New Ticket </h2>
+              <form action="insert_tickets.php" id="addTicket" method="post" class="solid">
+			  
+				  <label for="issueName"><b>Issue Name</b></label>
+                  <input type="text" name="issueName" id="issueName"/> 
+                  <span id="issueNameError"></span>
+                  <br/>
+				  <p></p>
+			  
+                  <label for="author"><b>Author</b></label>
+                  <input type="text" name="author" id="author"/> 
+                  <span id="authorError"></span>
+                  <br/>
+				  <p></p>
+
+                  <label for="contactInfo"><b>Contact Information</b></label>
+                  <input type="text" name="contactInfo" id="contactInfo"/> 
+                  <span id="contactInfoError"></span>
+                  <br/>
+				  <p></p>
+
+                  <label><b>Status</b></label>
+                  <select id="status" name="status">
+                      <option value="">Select</option>
+                      <option value="Open">Open</option>
+                      <option value="In progress">In progress</option>
+					  <option value="Pending Review">Pending Review</option>
+                      <option value="Closed">Closed</option>
+                  </select>
+                  <span id="statusError"></span>
+                  <br/>
+				  <p></p>
+
+                  <label for="description"><b>Description</b></label>
+                  <textarea name="description" id="description"></textarea>
+                  <span id="descriptionError"></span>
+                  <br/>
+				  <p></p>
+				  
+                  <input type="submit" value="create ticket"/>
+                  <input type="reset" value="reset"/>
+                  
+              </form>
+
+        <script src="./js/axios.js"></script>    
+        <script src="./js/app.js"></script>
+        <script src="./js/form.js"></script>
+    </tbody>
+</html>
