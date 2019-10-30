@@ -3,13 +3,7 @@
 // Functions to interact with the database (In Progress)
 //
 function add_ticket(name, poc, poc_email) {
-		$status="Open"
-
-		global $db;
-		$query = 'CREATE comments'
-
-		$statement = $db->prepare($query);
-		$statement->execute();
+		$status="Open";
 
 }
 
@@ -34,13 +28,7 @@ function update_status(ticket_id, new_status) {
 
 // Delete a Ticket
 function delete_ticket(ticket_id) {
-
-		// remove associated comments (SQL Query)
 	global $db;
-	$query = 'DELETE FROM comments
-		  WHERE ticket_id = :ticket_id';
-	$statement = $db->prepare($query);
-	$statement->execute();
 
 		// Remove Ticket (SQL Query)
 	$query = 'DELETE FROM tickets
