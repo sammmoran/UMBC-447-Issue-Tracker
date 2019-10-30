@@ -1,0 +1,16 @@
+DB Tables
+--------------------------------------------
+tickets
+	- tid
+	- title
+	- status
+	- poc_name
+	- poc_email
+	- modified_date
+	
+comments
+	- cid
+	- tid		(comments.tid->tickets.tid)
+	- name
+	- comment
+	- date
