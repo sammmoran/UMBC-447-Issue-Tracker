@@ -1,6 +1,7 @@
 <?php
 
 // Functions to interact with the database (In Progress)
+//
 function add_ticket(name, poc, poc_email) {
 		$status="Open"
 
