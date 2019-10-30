@@ -1,19 +1,15 @@
 <?php
 
-// DB Tables
-//	Tickets
-//		- Ticket_ID, Name, Status, Owner
-//
-//  Comments
-//		- ID, TID, Comment, Date
-//		- TID->Tickets.Ticket_ID
-
 // Functions to interact with the database (In Progress)
-
-function add_ticket(assigner, email) {
+function add_ticket(name, poc, poc_email) {
 		$status="Open"
-				//Ticket_ID is auto incremented
-				// Create new table entry (SQL Query)
+
+		global $db;
+		$query = 'CREATE comments'
+
+		$statement = $db->prepare($query);
+		$statement->execute();
+
 }
 
 // Add New Comment
@@ -22,6 +18,10 @@ function add_comment(ticket_id, comment) {
 }
 
 // Update Status
+// 1: Open
+// 2: In Progress
+// 3: Closed - Pending Approval
+// 4: Closed
 function update_status(ticket_id, new_status) {
 		// Branch 1 - Set to "In Progress"
 
