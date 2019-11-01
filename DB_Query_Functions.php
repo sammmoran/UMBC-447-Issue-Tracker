@@ -60,6 +60,9 @@ function update_status($ticket_id, $new_status) {
 		$status = 4;
 	}
 
+	$pdo->query("UPDATE tickets 
+					SET status = $status
+					WHERE tid = $tid;");
 }
 
 /*// Delete a Ticket
