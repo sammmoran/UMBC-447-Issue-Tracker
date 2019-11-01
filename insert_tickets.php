@@ -1,39 +1,34 @@
 <?php 
-
-	/*	
-		----- DELETE THIS -----
-		Establish connection
-		- This should be removed becuase Kyle and James are going to handle this
-	*/
-	require('database.php');
-	
+	require('DB_Query_Functions.php'); 
 	/*
 		Capture variables from newTicket.html file.
-		Organize data and send to SQL database.
-		Kyle and James will have SQL functions to handle SQL aspects.
+		Organize data and validate. 
 	*/
-	$title = $_POST['issueName'];
-	$status = "Open";
-	$service_agent = $_POST['contactInfo'];
-	$history = $_POST['description'];
+	$title = $_POST['title'];
+	$poc_name = $_POST['poc_name'];
+	$poc_email = $_POST['poc_email'];
+	$description = $_POST['description'];
+
+	include('inputErrorCheck.php');
+	$valInput = validateNewTicket($title, $poc_name, $poc_email, $description);
+	if (strlen($valInput) > 1){
+		echo "----- ERROR ------ \n";
+		echo "<br>";
+		echo "Read the following error output \n";
+		echo "<br>";
+		echo $valInput;
+		header("refresh:5, url=newTicket.html");
+	}	
 	
-	
-	/*
-		------ DELETE THIS ----
-		This will be handled by James and Kyle 
-	*/
-	$query = 'INSERT INTO dashboard (title,status,service_agent,history) VALUES (:title,:status,:service_agent,:history)';
-	$sqprep = $conn->prepare($query);
-	$sqexec = $sqprep->execute(array(":title"=>$title, ":status"=>$status, ":service_agent"=>$service_agent,":history"=>$history));
-	
-	
-	
-	/*Remove this if statement*/
-	if ($sqexec){
-		echo "It worked";
+	// Pass to database
+	// Will return 0 if it works; -1 if fails
+	if (add_ticket($title, $poc_name, $poc_email, $description)){
+		echo "Your new ticket has been added! \n";
+		echo "<br>";
+		header("refresh:2, url=dashboardpage.php");		
 	}
-	/*Debugging statement*/
 	else
-		echo "Query failed";
+		echo "Didnt work";
+		header("refresh:2, url=newTicket.html");
 
 ?>
