@@ -1,6 +1,6 @@
 <?php
 
-// Functions to interact with the database (In Progress)
+// Add a new ticket to the Database
 function add_ticket($title, $poc_name, $poc_email, $description) {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
@@ -13,9 +13,19 @@ function add_ticket($title, $poc_name, $poc_email, $description) {
 							VALUES ('$title', $status, '$poc_name', '$poc_email', '$description', '$currdate');");
 }
 
-/*// Add New Comment
-function add_comment(ticket_id, comment) {
-		// Create new comment with FK reference to provided ticket_id 
+// Create new comment with FK reference to provided ticket_id 
+function add_comment($tid, $name, $comment) {
+	// Connect to the Database
+	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	date_default_timezone_set("America/New_York");
+	$currdatetime = date("Y-m-d h:i:s");
+	
+	$pdo->query("INSERT INTO comments(tid, name, comment, date)
+							VALUES ($tid, '$name', '$comment', '$currdatetime');");
+
+	return 0;
 }
 
 // Update Status
@@ -23,32 +33,48 @@ function add_comment(ticket_id, comment) {
 // 2: In Progress
 // 3: Closed - Pending Approval
 // 4: Closed
-function update_status(ticket_id, new_status) {
-		// Branch 1 - Set to "In Progress"
+function update_status($ticket_id, $new_status) {
+	// Connect to the Database
+	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		// Branch 2 - Set to "Closed - Pending Approval"
-			// Send Email to provided email
+	// Branch 1 - Set to "Open"
+	if ($new_status == "Open") {
+		$status = 1;
+	}
 
-		// Branch 3 - Set to "Closed"
+	// Branch 2 - Set to "In Progress"
+	if ($new_status == "In Progress") {
+		$status = 2;
+	}
+
+	// Branch 3 - Set to "Closed - Pending Approval"
+	// Send Email to provided email
+	if ($new_status == "Closed - Pending Approval") {
+		$status = 3;
+	}
+
+	// Branch 4 - Set to "Closed"
+	// Send Email to provided email
+	if ($new_status == "Closed") {
+		$status = 4;
+	}
+
 }
 
-// Delete a Ticket
+/*// Delete a Ticket
 function delete_ticket(ticket_id) {
-	global $db;
+	// Connect to the Database
+	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		// Remove Ticket (SQL Query)
-	$query = 'DELETE FROM tickets
-		  WHERE id = :ticket_id';
-	$statement = $db->prepare($query);
-	$statement->execute();
+
 }
 
 function get_all_tickets() {
-		// Retrieve items from DB for display on webpage
-
-	//I don't have the DB in front of me as I write this, so I don't have the 
-	//table names and field names.  This will need revision, since we don't want
-	//to return EVERYTHING, just the info needed to generate the dashboard
+	// Connect to the Database
+	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	global $db;
 	$query = 'SELECT * FROM tickets
