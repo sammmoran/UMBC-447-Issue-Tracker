@@ -1,17 +1,19 @@
 <?php
 
-require("pdo.php");
-
 // Functions to interact with the database (In Progress)
 function add_ticket($title, $poc_name, $poc_email, $description) {
-		$status = 1;
-		$currdate = date("Y-m-d");
+	// Connect to the Database
+	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$result = $pdo->query("INSERT INTO tickets (title, poc_name, poc_email, description, modified_date)
-								VALUES ($title, $poc_name, $poc_email, $description,$currdate)");
+	$status = 1;				// default to Open
+	$currdate = date("Y-m-d");  // YYYY-MM-DD
+	
+	$pdo->query("INSERT INTO tickets(title, status, poc_name, poc_email, description, modified_date)
+							VALUES ('$title', $status, '$poc_name', '$poc_email', '$description', '$currdate');");
 }
 
-// Add New Comment
+/*// Add New Comment
 function add_comment(ticket_id, comment) {
 		// Create new comment with FK reference to provided ticket_id 
 }
@@ -55,7 +57,7 @@ function get_all_tickets() {
 	$statement = $db->prepare($query);
 	$statement->execute();
 	return $statement;
-}
+}*/
 
 
 
