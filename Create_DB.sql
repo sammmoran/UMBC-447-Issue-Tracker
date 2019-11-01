@@ -8,6 +8,7 @@ GRANT ALL PRIVILEGES ON issue_tracker.* TO 'cmsc447' IDENTIFIED BY 'demo';
 CREATE TABLE tickets(
     tid INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(128),
+    description TEXT,
     status INT,
     poc_name VARCHAR(64),
     poc_email VARCHAR(254),
