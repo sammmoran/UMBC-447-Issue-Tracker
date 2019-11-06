@@ -1,8 +1,59 @@
 <html>
 	<head>
 		<title>Dashboard Manager</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <style>
+
+            h1{
+                color: white; 
+            }
+            
+            
+            table, td{
+
+              border-collapse: collapse;
+
+            }    
+
+            table, td, th {  
+              text-align: left;
+                border: 1px solid black;
+
+            }
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            th {
+                background-color: orange;
+              color: white;
+                }
+
+            tr:nth-child(even){
+                background-color: lightgray
+            }
+
+            tr {
+                background-color: aliceblue
+
+            }
+
+            th, td {
+              padding: 15px;
+            }
+
+            body {font-family: Arial, Helvetica, sans-serif;
+                    background-color: #6495ed;}
+            * {box-sizing: border-box;}
+            
+        </style>
 	</head>
 	<body>
+        <h1 ><center>DASHBOARD</center></h1>
 		<table>
 		<?php 
 		
@@ -10,7 +61,7 @@
 				---- DELETE THIS -----
 				Kyle and James will be providing the function for connecting to the database.
 			*/
-			$conn = mysqli_connect('localhost', 'root', '', 'testdb');
+			$conn = mysqli_connect('localhost', 'root', '', 'issue_tracker');
 			if ($conn->connect_error){
 				die('Connection failed:'.$conn->connect_error);				
 			}			
@@ -32,22 +83,42 @@
 			*/
 			echo"<table boarder = 1>";
 			echo"<tr>
-			<td>Id</td>
-			<td>Issue Title</td>
-			<td>Status</td>
-			<td>ServiceAgent</td>
-			<td>Comment History</td>
+			<th>Id</th>
+			<th>Issue Title</th>
+			<th>Status</th>
+			<th>ServiceAgent</th>
+            <th>ServiceAgent Email</th>
+            <th>Date</th>
+			<th>Comment History</th>
 			</tr>";
+            
+            
+            /*commented out because it wasnt working
 			while($row = mysqli_fetch_assoc($result)){
 				echo"<tr>
-				<td>{$row['id']}</td>
+                <th>{$row['tid']}</th>
+				<th>{$row['title']}</th>
+				<th>{$row['description']}</th>
+				<th>{$row['status']}</th>
+				<th>{$row['poc_name']}</th>
+                <th>{$row['poc_email']}</th>
+                <th>{$row['modified_date']}</th>
+				</tr>";
+                */
+            
+            
+				/*
+                //Sams code, changed to above in accordance with tickets table
+                
+                <td>{$row['id']}</td>
 				<td>{$row['title']}</td>
 				<td>{$row['status']}</td>
 				<td>{$row['service_agent']}</td>
 				<td>{$row['history']}</td>
 				</tr>";	
 			}
-			echo"</table>";			
+			echo"</table>";	
+            */
 			$conn->close();
 		?>
 	

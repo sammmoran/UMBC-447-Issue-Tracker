@@ -190,7 +190,7 @@
 				<td>{$row['cid']}</td>
 				<td>{$row['tid']}</td>
 				<td>{$row['name']}</td>
-				<td>{$row['comments']}</td>
+				<td>{$row['comment']}</td>
 				<td>{$row['date']}</td>
 				</tr>";	
 			}
