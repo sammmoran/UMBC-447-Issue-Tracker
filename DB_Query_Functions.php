@@ -11,6 +11,8 @@ function add_ticket($title, $poc_name, $poc_email, $description) {
 	
 	$pdo->query("INSERT INTO tickets(title, status, poc_name, poc_email, description, modified_date)
 							VALUES ('$title', $status, '$poc_name', '$poc_email', '$description', '$currdate');");
+	
+	return 0;
 }
 
 // Create new comment with FK reference to provided ticket_id 
@@ -63,6 +65,8 @@ function update_status($ticket_id, $new_status) {
 	$pdo->query("UPDATE tickets 
 					SET status = $status
 					WHERE tid = $tid;");
+
+	return 0;
 }
 
 /*// Delete a Ticket
