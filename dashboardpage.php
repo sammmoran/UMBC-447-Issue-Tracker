@@ -53,9 +53,13 @@
         </style>
 	</head>
 	<body>
+        
         <h1 ><center>DASHBOARD</center></h1>
-		<table>
-		<?php 
+        
+        
+		<table id= "dashboard">
+		
+            <?php 
 		
 			/*
 				---- DELETE THIS -----
@@ -85,12 +89,36 @@
 			echo"<tr>
 			<th>Id</th>
 			<th>Issue Title</th>
-			<th>Status</th>
+			<th class='status' >Status</th>
 			<th>ServiceAgent</th>
             <th>ServiceAgent Email</th>
             <th>Date</th>
 			<th>Comment History</th>
 			</tr>";
+            
+            
+            ////////////////////data for testing layout
+            echo"<tr>
+			<td>A1</td>
+			<td>SQL not working</td>
+			<td class='status' data-value=open>Open</td>
+			<td>Aaron</td>
+            <td>aaron@gmail.com</td>
+            <td>11/4/19</td>
+			<td>may be due to port being used by skype</td>
+			</tr>";
+            
+            echo"<tr>
+			<td>A2</td>
+			<td>PHP not connecting to db</td>
+			<td>Closed</td>
+			<td>Sam</td>
+            <td>sam@gmail.com</td>
+            <td>11/5/19</td>
+			<td>Kyle and James fixed the code and it is now working</td>
+			</tr>";
+            ///////////////////////////////
+            
             
             
             /*commented out because it wasnt working
@@ -123,6 +151,24 @@
 		?>
 	
 		</table>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            
+            $(document).ready(function(){
+                var myTable = document.getElementsByClassName('status');
+            
+                for (var i=0, len=myTable.length; i<len; i++){
+                if(myTable[i].getAttribute("data-value")=="open"){
+                myTable[i].style.backgroundColor == 'red';
+            }
+            
+                });
+        
+                
+                
+    
+            
+        
+        </script>
 	</body>
 </html>
