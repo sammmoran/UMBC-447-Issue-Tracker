@@ -42,7 +42,7 @@ function add_comment($tid, $name, $comment) {
 // 2: In Progress
 // 3: Closed - Pending Approval
 // 4: Closed
-function update_status($ticket_id, $new_status) {
+function update_status($tid, $new_status) {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -71,8 +71,8 @@ function update_status($ticket_id, $new_status) {
 
 	// Update Query
 	$pdo->query("UPDATE tickets 
-					SET status = $status
-					WHERE tid = $tid;");
+					SET status=$status
+					WHERE tid=$tid;");
 
 	return 0;
 }
