@@ -1,5 +1,12 @@
 <?php
 
+/*function connectDB() {
+	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	return $pdo;
+}*/
+
 // Add a new ticket to the Database
 function add_ticket($title, $poc_name, $poc_email, $description) {
 	// Connect to the Database
@@ -62,6 +69,7 @@ function update_status($ticket_id, $new_status) {
 		$status = 4;
 	}
 
+	// Update Query
 	$pdo->query("UPDATE tickets 
 					SET status = $status
 					WHERE tid = $tid;");
