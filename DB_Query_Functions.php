@@ -77,16 +77,18 @@ function update_status($tid, $new_status) {
 	return 0;
 }
 
-/*// Delete a Ticket
-function delete_ticket(ticket_id) {
+// Delete a Ticket
+function delete_ticket(tid) {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+	$pdo->query("DELETE FROM `tickets` WHERE tid=$tid;");
+
 
 }
 
-function get_all_tickets() {
+/*function get_all_tickets() {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
