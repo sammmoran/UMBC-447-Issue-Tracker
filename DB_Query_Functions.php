@@ -16,10 +16,16 @@ function add_ticket($title, $poc_name, $poc_email, $description) {
 	$status = 1;				// default to Open
 	$currdate = date("Y-m-d");  // YYYY-MM-DD
 	
-	$pdo->query("INSERT INTO tickets(title, status, poc_name, poc_email, description, modified_date)
+	$res = $pdo->query("INSERT INTO tickets(title, status, poc_name, poc_email, description, modified_date)
 							VALUES ('$title', $status, '$poc_name', '$poc_email', '$description', '$currdate');");
 	
-	return 0;
+	// Return 0 if no error in sql
+	if ($res) {
+		return 0;
+	}
+	else {
+		return -1;
+	}
 }
 
 // Create new comment with FK reference to provided ticket_id 
@@ -31,10 +37,16 @@ function add_comment($tid, $name, $comment) {
 	date_default_timezone_set("America/New_York");
 	$currdatetime = date("Y-m-d h:i:s");
 	
-	$pdo->query("INSERT INTO comments(tid, name, comment, date)
+	$res = $pdo->query("INSERT INTO comments(tid, name, comment, date)
 							VALUES ($tid, '$name', '$comment', '$currdatetime');");
 
-	return 0;
+	// Return 0 if no error in sql
+	if ($res) {
+		return 0;
+	}
+	else {
+		return -1;
+	}
 }
 
 // Update Status
@@ -70,11 +82,17 @@ function update_status($tid, $new_status) {
 	}
 
 	// Update Query
-	$pdo->query("UPDATE tickets 
+	$res = $pdo->query("UPDATE tickets 
 					SET status=$status
 					WHERE tid=$tid;");
 
-	return 0;
+	// Return 0 if no error in sql
+	if ($res) {
+		return 0;
+	}
+	else {
+		return -1;
+	}
 }
 
 // Delete a Ticket
@@ -83,9 +101,15 @@ function delete_ticket(tid) {
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	$pdo->query("DELETE FROM `tickets` WHERE tid=$tid;");
+	$res = $pdo->query("DELETE FROM `tickets` WHERE tid=$tid;");
 
-
+	// Return 0 if no error in sql
+	if ($res) {
+		return 0;
+	}
+	else {
+		return -1;
+	}
 }
 
 /*function get_all_tickets() {
