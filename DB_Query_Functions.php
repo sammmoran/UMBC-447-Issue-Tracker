@@ -117,13 +117,12 @@ function get_all_tickets() {
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	global $db;
 	$query = 'SELECT * FROM tickets
 		  ORDER BY status';
 
-	$statement = $db->prepare($query);
+	$statement = $pdo->prepare($query);
 	$statement->execute();
-	$ret = $statement.fetchall();
+	$ret = $statement.fetchAll();
 	$statement.closeCursor();
 	return $ret;
 }
@@ -134,11 +133,10 @@ function get_comments_by_ticket(tid)
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	global $db;
 	$query = 'SELECT * FROM comments
 		  WHERE tid=$tid;';
 
-	$statement = $db->prepare($query);
+	$statement = $pdo->prepare($query);
 	$statement->execute();
 	$ret = $statement.fetchall();
 	$statement.closeCursor();
