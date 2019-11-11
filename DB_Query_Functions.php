@@ -112,7 +112,7 @@ function delete_ticket(tid) {
 	}
 }
 
-/*function get_all_tickets() {
+function get_all_tickets() {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -123,8 +123,10 @@ function delete_ticket(tid) {
 
 	$statement = $db->prepare($query);
 	$statement->execute();
-	return $statement;
-}*/
+	$ret = $statement.fetchall();
+	$statement.closeCursor();
+	return $ret;
+}
 
 
 
