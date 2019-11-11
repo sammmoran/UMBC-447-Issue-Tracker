@@ -127,7 +127,7 @@ function get_all_tickets() {
 	return $ret;
 }
 
-function get_comments_by_ticket(tid)
+function get_comments_by_ticket($tid)
 {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
