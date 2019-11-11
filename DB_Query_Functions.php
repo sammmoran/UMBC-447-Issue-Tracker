@@ -122,8 +122,8 @@ function get_all_tickets() {
 
 	$statement = $pdo->prepare($query);
 	$statement->execute();
-	$ret = $statement.fetchAll();
-	$statement.closeCursor();
+	$ret = $statement->fetchAll();
+	$statement->closeCursor();
 	return $ret;
 }
 
@@ -138,8 +138,8 @@ function get_comments_by_ticket(tid)
 
 	$statement = $pdo->prepare($query);
 	$statement->execute();
-	$ret = $statement.fetchall();
-	$statement.closeCursor();
+	$ret = $statement->fetchAll();
+	$statement->closeCursor();
 	return $ret;
 
 }
