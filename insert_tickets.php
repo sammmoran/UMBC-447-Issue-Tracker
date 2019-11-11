@@ -1,4 +1,6 @@
 <?php 
+	
+	require('inputErrorCheck.php');
 	require('DB_Query_Functions.php'); 
 	/*
 		Capture variables from newTicket.html file.
@@ -8,8 +10,7 @@
 	$poc_name = $_POST['poc_name'];
 	$poc_email = $_POST['poc_email'];
 	$description = $_POST['description'];
-
-	include('inputErrorCheck.php');
+	
 	$valInput = validateNewTicket($title, $poc_name, $poc_email, $description);
 	if (strlen($valInput) > 1){
 		echo "----- ERROR ------ \n";
@@ -22,13 +23,16 @@
 	
 	// Pass to database
 	// Will return 0 if it works; -1 if fails
-	if (add_ticket($title, $poc_name, $poc_email, $description)){
+	if (add_ticket($title, $poc_name, $poc_email, $description) == 0){
 		echo "Your new ticket has been added! \n";
 		echo "<br>";
 		header("refresh:2, url=dashboardpage.php");		
 	}
-	else
-		echo "Didnt work";
-		header("refresh:2, url=newTicket.html");
+	else{
+		echo "TICKET ADD FAILURE";
+		echo "<br>";
+		echo "Try Again.";
+		header("refresh:5, url=newTicket.html");
+	}
 
 ?>
