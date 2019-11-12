@@ -61,21 +61,14 @@
 		
             <?php 
 		
+			require('DB_Query_Functions.php');
+		
+		
 			/*
 				---- DELETE THIS -----
 				Kyle and James will be providing the function for connecting to the database.
 			*/
-			$conn = mysqli_connect('localhost', 'root', '', 'issue_tracker');
-			if ($conn->connect_error){
-				die('Connection failed:'.$conn->connect_error);				
-			}			
-			$sql = 'SELECT * FROM dashboard';
-			$result = $conn->query($sql);
-			
-			
-			
-			
-			
+					
 			/*
 				Set up a table that will make use of the SQL query retrieved from the database.
 				This will display a dashboard with the ticket's id, title, status, service agent, and
@@ -95,7 +88,21 @@
             <th>Date</th>
 			<th>Comment History</th>
 			</tr>";
-            
+        
+			$store = get_all_tickets();
+			foreach($store as $ticket){
+				echo"<tr>";
+				echo "<th>" . $ticket['tid'] . "</th>";
+				echo "<th>" . $ticket['title'] . "</th>";
+				echo "<th>" . $ticket['status'] . "</th>";
+				echo "<th>" . $ticket['poc_name'] . "</th>";
+				echo "<th>" . $ticket['poc_email'] . "</th>";
+				echo "<th>" . $ticket['modified_date'] . "</th>";
+				echo"</tr>";
+			}
+
+
+		
             
             ////////////////////data for testing layout
             echo"<tr>
@@ -147,7 +154,7 @@
 			}
 			echo"</table>";	
             */
-			$conn->close();
+			//$conn->close();
 		?>
 	
 		</table>
