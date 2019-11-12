@@ -127,21 +127,12 @@
 		<table>
 		<?php 
 		
-			$conn = mysqli_connect('localhost', 'root', '', 'issue_tracker');
-			if ($conn->connect_error){
-				die('Connection failed:'.$conn->connect_error);				
-			}
-			$sql = 'SELECT * FROM commhistory';
-			$result = $conn->query($sql);
+			require('DB_Query_Functions.php');
+		
+			$tid = $_POST['tid'];
 			
+			$store = get_comments_by_ticket($tid);
 			
-			/*
-				Take the SQL comment history query and display it a table format.
-				
-				--- NOTE --- 
-				
-				Need to make this chronological - from newest at top and oldest at bottom.
-			*/
 			echo"<table boarder = 1>";
 			echo"<tr>
 			<th><b>Comment ID</b></th>
@@ -150,10 +141,29 @@
 			<th><b>Comment</b></th>
 			<th><b>Date</b></th>
 			</tr>";
+			
+			
+			foreach($store as $comment){
+				echo"<tr>";
+				echo "<th>" . $comment['cid'] . "</th>";
+				echo "<th>" . $comment['tid'] . "</th>";
+				echo "<th>" . $comment['name'] . "</th>";
+				echo "<th>" . $comment['comment'] . "</th>";
+				echo "<th>" . $comment['date'] . "</th>";				
+				echo"</tr>";
+			}
+			
+			/*
+				Take the SQL comment history query and display it a table format.
+				
+				--- NOTE --- 
+				
+				Need to make this chronological - from newest at top and oldest at bottom.
+			*/
             
             
             /////////////this is test data
-            echo"<tr>
+            /*echo"<tr>
             <td>A1</td>
             <td>1</td>
             <td>Peter</td>
@@ -181,6 +191,7 @@
             <td>Wears a yellow shirt</td>
             <td>11/8/19</td>
         </tr>";
+			*/
             ///////////////////////////////
             
             
@@ -196,7 +207,7 @@
 			}
 			echo"</table>";
 			*/			
-			$conn->close();
+			//$conn->close();
 		?>
 	
 		</table>
@@ -204,7 +215,7 @@
 		<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
 
 		<div class="form-popup" id="myForm">
-		  <form action="/commentspage.php" class="form-container">
+		  <form action="/commentspage.php" class="form-container" method="post">
 			<h1>Add Comment</h1>
 
 			<label for="name"><b>Name</b></label>
@@ -215,6 +226,7 @@
 			
 			<button type="submit" class="btn">Add Comment</button>
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+			<?php echo '<name="tid" id="tid" value="' . $_POST['tid'] . '">'; ?>
 		  </form>
 		</div>
 

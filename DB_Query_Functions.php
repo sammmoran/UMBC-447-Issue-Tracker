@@ -1,31 +1,48 @@
 <?php
 
 function connectDB() {
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
+	$dsn = 'mysql:host=localhost;dbname=issue_tracker';
+	$username = 'root';
+	$password = '';
+	try{
+		$conn = new PDO($dsn, $username, $password);
+	}
+	catch(PDOException $pe){
+		die("Could not connect to database.".$pe->getMessage());		
+		exit();
+	}
 
-	return $pdo;
+	return $conn;
 }
 
 // Add a new ticket to the Database
 function add_ticket($title, $poc_name, $poc_email, $description) {
-	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-	$status = 1;				// default to Open
-	$currdate = date("Y-m-d");  // YYYY-MM-DD
 	
-	$res = $pdo->query("INSERT INTO tickets(title, status, poc_name, poc_email, description, modified_date)
-							VALUES ('$title', $status, '$poc_name', '$poc_email', '$description', '$currdate');");
+	// Connect to ticket db
+	$pdo = connectDB();	
 	
-	// Return 0 if no error in sql
-	if ($res) {
+	// Set status to "Open"
+	$status = 1;
+	
+	// Grab the submission date
+	$modified_date = date("Y-m_d");
+	
+	// Create query
+	$query = 'INSERT INTO tickets(title,description,status,poc_name,poc_email,modified_date) VALUES(:title,:description,:status,:poc_name,:poc_email,:modified_date)';
+	
+	// Prepare and send query
+	$sqprep = $pdo->prepare($query);
+	$sqexec = $sqprep->execute(array(":title"=>$title, ":description"=>$description,":status"=>$status, ":poc_name"=>$poc_name, ":poc_email"=>$poc_email, ":modified_date"=>$modified_date));
+	
+	// Check if add successful
+	if ($sqexec){
 		return 0;
+		
 	}
-	else {
-		return -1;
-	}
+	
+	// If fail
+	return 1;
 }
 
 // Create new comment with FK reference to provided ticket_id 
@@ -37,16 +54,10 @@ function add_comment($tid, $name, $comment) {
 	date_default_timezone_set("America/New_York");
 	$currdatetime = date("Y-m-d h:i:s");
 	
-	$res = $pdo->query("INSERT INTO comments(tid, name, comment, date)
+	$pdo->query("INSERT INTO comments(tid, name, comment, date)
 							VALUES ($tid, '$name', '$comment', '$currdatetime');");
 
-	// Return 0 if no error in sql
-	if ($res) {
-		return 0;
-	}
-	else {
-		return -1;
-	}
+	return 0;
 }
 
 // Update Status
@@ -82,67 +93,55 @@ function update_status($tid, $new_status) {
 	}
 
 	// Update Query
-	$res = $pdo->query("UPDATE tickets 
+	$pdo->query("UPDATE tickets 
 					SET status=$status
 					WHERE tid=$tid;");
 
-	// Return 0 if no error in sql
-	if ($res) {
-		return 0;
-	}
-	else {
-		return -1;
-	}
+	return 0;
 }
 
 // Delete a Ticket
-function delete_ticket($tid) {
+/*function delete_ticket(ticket_id) {
 	// Connect to the Database
 	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	$res = $pdo->query("DELETE FROM `tickets` WHERE tid=$tid;");
 
-	// Return 0 if no error in sql
-	if ($res) {
-		return 0;
-	}
-	else {
-		return -1;
-	}
-}
+}*/
 
 function get_all_tickets() {
 	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+	//$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
+	//global $db;
+	
+	$db = connectDB();
+	
 	$query = 'SELECT * FROM tickets
 		  ORDER BY status';
-
-	$statement = $pdo->prepare($query);
-	$statement->execute();
-	$ret = $statement->fetchAll();
+	
+	$statement = $db->prepare($query);
+	$stateexec = $statement->execute();
+	$ret = $statement->fetchall();
 	$statement->closeCursor();
 	return $ret;
 }
 
-function get_comments_by_ticket($tid)
-{
+function get_comments_by_ticket($tid){
 	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+	//$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
+	$pdo = connectDB();
+	
 	$query = 'SELECT * FROM comments
 		  WHERE tid=$tid;';
-
 	$statement = $pdo->prepare($query);
 	$statement->execute();
 	$ret = $statement->fetchAll();
 	$statement->closeCursor();
 	return $ret;
-
 }
-
 
 ?>

@@ -10,7 +10,7 @@
 
     add_ticket($title, $poc_name, $poc_email, $description);
     add_comment($tid, $poc_name, $comment);
-    update_status(3, "Closed - Pending Approval");
-    update_status(1, "Closed");
+    update_status(3, "In Progress");
+    update_status(1, "Closed - Pending Approval");
 
 ?>

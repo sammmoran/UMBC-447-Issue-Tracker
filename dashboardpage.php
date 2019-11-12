@@ -53,13 +53,9 @@
         </style>
 	</head>
 	<body>
-        
         <h1 ><center>DASHBOARD</center></h1>
-        
-        
-		<table id= "dashboard">
-		
-            <?php 
+		<table>
+		<?php 
 		
 			require('DB_Query_Functions.php');
 		
@@ -82,7 +78,7 @@
 			echo"<tr>
 			<th>Id</th>
 			<th>Issue Title</th>
-			<th class='status' >Status</th>
+			<th>Status</th>
 			<th>ServiceAgent</th>
             <th>ServiceAgent Email</th>
             <th>Date</th>
@@ -92,90 +88,23 @@
 			$store = get_all_tickets();
 			foreach($store as $ticket){
 				echo"<tr>";
-				echo "<th>" . $ticket['tid'] . "</th>";
-				echo "<th>" . $ticket['title'] . "</th>";
-				echo "<th>" . $ticket['status'] . "</th>";
-				echo "<th>" . $ticket['poc_name'] . "</th>";
-				echo "<th>" . $ticket['poc_email'] . "</th>";
-				echo "<th>" . $ticket['modified_date'] . "</th>";
+				echo "<td>" . $ticket['tid'] . "</td>";
+				echo "<td>" . $ticket['title'] . "</td>";
+				echo "<td>" . $ticket['status'] . "</td>";
+				echo "<td>" . $ticket['poc_name'] . "</td>";
+				echo "<td>" . $ticket['poc_email'] . "</td>";
+				echo "<td>" . $ticket['modified_date'] . "</td>";
+				
+				echo '<td> <form action = "commentspage.php" method="post">';
+				echo '<input type="hidden"  name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type = "submit" value="Check History">';
+				echo "</form> </td>";
+				
 				echo"</tr>";
 			}
-
-
-		
-            
-            ////////////////////data for testing layout
-            echo"<tr>
-			<td>A1</td>
-			<td>SQL not working</td>
-			<td class='status' data-value=open>Open</td>
-			<td>Aaron</td>
-            <td>aaron@gmail.com</td>
-            <td>11/4/19</td>
-			<td>may be due to port being used by skype</td>
-			</tr>";
-            
-            echo"<tr>
-			<td>A2</td>
-			<td>PHP not connecting to db</td>
-			<td>Closed</td>
-			<td>Sam</td>
-            <td>sam@gmail.com</td>
-            <td>11/5/19</td>
-			<td>Kyle and James fixed the code and it is now working</td>
-			</tr>";
-            ///////////////////////////////
-            
-            
-            
-            /*commented out because it wasnt working
-			while($row = mysqli_fetch_assoc($result)){
-				echo"<tr>
-                <th>{$row['tid']}</th>
-				<th>{$row['title']}</th>
-				<th>{$row['description']}</th>
-				<th>{$row['status']}</th>
-				<th>{$row['poc_name']}</th>
-                <th>{$row['poc_email']}</th>
-                <th>{$row['modified_date']}</th>
-				</tr>";
-                */
-            
-            
-				/*
-                //Sams code, changed to above in accordance with tickets table
-                
-                <td>{$row['id']}</td>
-				<td>{$row['title']}</td>
-				<td>{$row['status']}</td>
-				<td>{$row['service_agent']}</td>
-				<td>{$row['history']}</td>
-				</tr>";	
-			}
-			echo"</table>";	
-            */
-			//$conn->close();
 		?>
 	
 		</table>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script>
-            
-            $(document).ready(function(){
-                var myTable = document.getElementsByClassName('status');
-            
-                for (var i=0, len=myTable.length; i<len; i++){
-                if(myTable[i].getAttribute("data-value")=="open"){
-                myTable[i].style.backgroundColor == 'red';
-            }
-            
-                });
-        
-                
-                
-    
-            
-        
-        </script>
+
 	</body>
 </html>
