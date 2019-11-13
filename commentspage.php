@@ -1,3 +1,15 @@
+<?php
+  
+  require('DB_Query_Functions.php');
+  
+  if ( isset($_POST['name']) && isset($_POST['comment']) && isset($_POST['tid']) ) {
+    add_comment( $_POST['tid'], $_POST['name'], $_POST['comment'] );
+    $tid = $_POST['tid'];
+    header('Location: commentspage.php?tid='. $tid);
+    exit();
+  }
+?>
+
 <html>
 	<head>
 		<title>History Display</title>
@@ -126,11 +138,14 @@
         <h2>Description goes somewhere here</h2>
 		<table>
 		<?php 
-		
-      require('DB_Query_Functions.php');
-		
-			$tid = $_POST['tid'];
-			
+      
+      if ($_GET) {
+        $tid = $_GET['tid'];     
+      }
+      else {
+        $tid = $_POST['tid'];
+      }
+
 			$store = get_comments_by_ticket($tid);
 			
 			echo"<table boarder = 1>";
