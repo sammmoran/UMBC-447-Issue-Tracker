@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    background-color: #6495ed;
+}
+    
+    
+form {
+    display: inline-block;
+}
+            
+form.solid {
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+    height: 250px;
+    width: 25%;
+    border-style: solid;
+    border-radius: 25px;
+    background-color: white;
+}

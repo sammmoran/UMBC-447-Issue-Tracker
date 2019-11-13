@@ -1,9 +1,0 @@
-Add:
-	- Ticket
-	- Comment
-Update:
-	- Status
-		- Request Closure (Sends email to ticket owner/assigner)
-		- Close (Ticket fully closed -- No additional comments)
-Delete: (When ticket is deleted, delete all associated comments | Comments -> ticket)
-Selection for viewing

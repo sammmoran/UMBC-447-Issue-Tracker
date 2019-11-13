@@ -1,56 +1,8 @@
 <html>
 	<head>
 		<title>Dashboard Manager</title>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <style>
-
-            h1{
-                color: white; 
-            }
-            
-            
-            table, td{
-
-              border-collapse: collapse;
-
-            }    
-
-            table, td, th {  
-              text-align: left;
-                border: 1px solid black;
-
-            }
-
-            table {
-              border-collapse: collapse;
-              width: 100%;
-            }
-
-            th {
-                background-color: orange;
-              color: white;
-                }
-
-            tr:nth-child(even){
-                background-color: lightgray
-            }
-
-            tr {
-                background-color: aliceblue
-
-            }
-
-            th, td {
-              padding: 15px;
-            }
-
-            body {font-family: Arial, Helvetica, sans-serif;
-                    background-color: #6495ed;}
-            * {box-sizing: border-box;}
-            
-        </style>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="styles/dashboardpage.css">            
 	</head>
 	<body>
         <h1 ><center>DASHBOARD</center></h1>
