@@ -66,9 +66,6 @@ function add_comment($tid, $name, $comment) {
 // 4: Closed
 function update_status($tid, $new_status) {
 	// Connect to the Database
-	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
-	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 	$db = connectDB();
 
 	// Branch 1 - Set to "Open"
@@ -111,16 +108,11 @@ function update_status($tid, $new_status) {
 }*/
 
 function get_all_tickets() {
-	// Connect to the Database
-	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
-	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	
-	//global $db;
-	
+	// Connect to the Database	
 	$db = connectDB();
 	
-	$query = 'SELECT * FROM tickets
-		  ORDER BY status';
+	$query = "SELECT * FROM tickets
+		  ORDER BY status";
 	
 	$statement = $db->prepare($query);
 	$stateexec = $statement->execute();
@@ -129,15 +121,22 @@ function get_all_tickets() {
 	return $ret;
 }
 
-function get_comments_by_ticket($tid){
-	// Connect to the Database
-	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
-	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+function get_ticket_description($tid) {
+	$db = connectDB();
 	
+	$query = "SELECT description FROM tickets WHERE tid=$tid;";
+	$ret = $db->query($query);
+	$ret = $ret->fetch(PDO::FETCH_ASSOC);
+	return $ret;
+}
+
+function get_comments_by_ticket($tid){
+	// Connect to the Database	
 	$pdo = connectDB();
 	
-	$query = 'SELECT * FROM comments
-		  WHERE tid=$tid;';
+	$query = "SELECT * FROM comments
+		  		WHERE tid=$tid
+				ORDER BY date DESC;";
 	$statement = $pdo->prepare($query);
 	$statement->execute();
 	$ret = $statement->fetchAll();

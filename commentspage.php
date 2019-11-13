@@ -134,21 +134,25 @@
         
 	</head>
 	<body>
-        
-        <h2>Description goes somewhere here</h2>
-		<table>
-		<?php 
-      
+    <h2>Ticket Description</h2>
+    <?php
       if ($_GET) {
         $tid = $_GET['tid'];     
       }
       else {
         $tid = $_POST['tid'];
-      }
+      }     
 
-			$store = get_comments_by_ticket($tid);
+      $desc = get_ticket_description($tid);
+      echo "<h3>" . $desc['description'] . "</h3><br><br>";
+
+    ?> 
+
+		<table>
+		<?php 
+      $store = get_comments_by_ticket($tid);
 			
-			echo"<table boarder = 1>";
+			echo"<table border = 1>";
 			echo"<tr>
 			<th><b>Comment ID</b></th>
 			<th><b>Ticket ID</b></th>
@@ -160,11 +164,11 @@
 			
 			foreach($store as $comment){
 				echo"<tr>";
-				echo "<th>" . $comment['cid'] . "</th>";
-				echo "<th>" . $comment['tid'] . "</th>";
-				echo "<th>" . $comment['name'] . "</th>";
-				echo "<th>" . $comment['comment'] . "</th>";
-				echo "<th>" . $comment['date'] . "</th>";				
+				echo "<td>" . $comment['cid'] . "</td>";
+				echo "<td>" . $comment['tid'] . "</td>";
+				echo "<td>" . $comment['name'] . "</td>";
+				echo "<td>" . $comment['comment'] . "</td>";
+				echo "<td>" . $comment['date'] . "</td>";				
 				echo"</tr>";
 			}
 			
