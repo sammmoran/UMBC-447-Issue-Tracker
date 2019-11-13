@@ -46,15 +46,8 @@ function add_ticket($title, $poc_name, $poc_email, $description) {
 }
 
 // Create new comment with FK reference to provided ticket_id 
-function add_comment() {
-	$tid = $_POST['tid'];
-	$name = $_POST['name'];
-	$comment = $_POST['comment'];
-
+function add_comment($tid, $name, $comment) {
 	// Connect to the Database
-	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
-	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 	$db = connectDB();
 
 	date_default_timezone_set("America/New_York");
