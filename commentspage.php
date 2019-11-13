@@ -32,10 +32,10 @@
 
     ?> 
 
-		<table>
+	<table>
 		<?php 
-      $store = get_comments_by_ticket($tid);
-			
+     		$store = get_comments_by_ticket($tid);
+		
 			echo"<table border = 1>";
 			echo"<tr>
 			<th><b>Comment ID</b></th>
@@ -57,13 +57,13 @@
 			}
 		?>
 	
-		</table>
+	</table>
     
-		<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
+	<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
 
-		<div class="form-popup" id="myForm">
-		  <form action="./commentspage.php" class="form-container" method="post">
-			<h1>Add Comment</h1>
+	<div class="form-popup" id="myForm">
+		<form action="./commentspage.php" class="form-container" method="post">
+		<h1>Add Comment</h1>
 
 			<label for="name"><b>Name</b></label>
 			<textarea type="text" placeholder="Enter Name" name="name" required></textarea>
