@@ -46,15 +46,21 @@ function add_ticket($title, $poc_name, $poc_email, $description) {
 }
 
 // Create new comment with FK reference to provided ticket_id 
-function add_comment($tid, $name, $comment) {
+function add_comment() {
+	$tid = $_POST['tid'];
+	$name = $_POST['name'];
+	$comment = $_POST['comment'];
+
 	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
+	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	$db = connectDB();
 
 	date_default_timezone_set("America/New_York");
 	$currdatetime = date("Y-m-d h:i:s");
 	
-	$pdo->query("INSERT INTO comments(tid, name, comment, date)
+	$db->query("INSERT INTO comments(tid, name, comment, date)
 							VALUES ($tid, '$name', '$comment', '$currdatetime');");
 
 	return 0;
@@ -67,8 +73,10 @@ function add_comment($tid, $name, $comment) {
 // 4: Closed
 function update_status($tid, $new_status) {
 	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
+	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	$db = connectDB();
 
 	// Branch 1 - Set to "Open"
 	if ($new_status == "Open") {
@@ -93,7 +101,7 @@ function update_status($tid, $new_status) {
 	}
 
 	// Update Query
-	$pdo->query("UPDATE tickets 
+	$db->query("UPDATE tickets 
 					SET status=$status
 					WHERE tid=$tid;");
 
@@ -103,7 +111,7 @@ function update_status($tid, $new_status) {
 // Delete a Ticket
 /*function delete_ticket(ticket_id) {
 	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
@@ -111,7 +119,7 @@ function update_status($tid, $new_status) {
 
 function get_all_tickets() {
 	// Connect to the Database
-	//$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
 	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
 	//global $db;
@@ -130,7 +138,7 @@ function get_all_tickets() {
 
 function get_comments_by_ticket($tid){
 	// Connect to the Database
-	//$pdo = new PDO('mysql:host=localhost;port=3307;dbname=issue_tracker','cmsc447', 'demo');
+	//$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
 	//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
 	$pdo = connectDB();

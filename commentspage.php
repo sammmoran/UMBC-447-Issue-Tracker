@@ -127,7 +127,7 @@
 		<table>
 		<?php 
 		
-			require('DB_Query_Functions.php');
+      require('DB_Query_Functions.php');
 		
 			$tid = $_POST['tid'];
 			
@@ -211,11 +211,11 @@
 		?>
 	
 		</table>
-		
+    
 		<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
 
 		<div class="form-popup" id="myForm">
-		  <form action="/commentspage.php" class="form-container" method="post">
+		  <form action="./commentspage.php" class="form-container" method="post">
 			<h1>Add Comment</h1>
 
 			<label for="name"><b>Name</b></label>
@@ -224,11 +224,11 @@
 			<label for="comment"><b>Comment</b></label>
 			<textarea type="text" placeholder="Enter Comment" name="comment" required></textarea>
 			
-			<button type="submit" class="btn">Add Comment</button>
-			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-			<?php echo '<name="tid" id="tid" value="' . $_POST['tid'] . '">'; ?>
+			<button name="submit" type="submit" class="btn">Add Comment</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <input type="hidden" name="tid" id="tid" value='<?php echo "$tid";?>'/>
 		  </form>
-		</div>
+    </div>
 
 		<script>
 		function openForm() {

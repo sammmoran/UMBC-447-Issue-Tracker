@@ -95,7 +95,7 @@
 				echo "<td>" . $ticket['poc_email'] . "</td>";
 				echo "<td>" . $ticket['modified_date'] . "</td>";
 				
-				echo '<td> <form action = "commentspage.php" method="post">';
+				echo '<td> <form action = "./commentspage.php" method="post">';
 				echo '<input type="hidden"  name="tid" id="tid" value="' . $ticket['tid'] . '">';
 				echo '<input type = "submit" value="Check History">';
 				echo "</form> </td>";
