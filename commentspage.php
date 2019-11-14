@@ -59,9 +59,11 @@
 				echo"</tr>";
 			}
 		?>
-	
+
 	</table>
     
+	<br><br><br><br><br><br>
+
 	<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
 
 	<div class="form-popup" id="myForm">
