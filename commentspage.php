@@ -21,8 +21,7 @@
     <button onclick="location.href='dashboardpage.php'" type="button" class="backbutton">
          BACK TO THE DASHBOARD</button>
     
-    <h2>Ticket Description</h2>
-        
+        <h2>Ticket Description</h2>
     <?php
       if ($_GET) {
         $tid = $_GET['tid'];     
