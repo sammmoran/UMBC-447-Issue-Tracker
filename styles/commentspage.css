@@ -1,3 +1,12 @@
+h3{
+    display:inline-block;
+    padding: 25px;
+    white-space: nowrap;
+    width: auto;
+    background-color: antiquewhite;
+    border-style: groove;
+}
+
 table, td {  
     border-collapse: collapse;
 }    
@@ -32,6 +41,8 @@ th, td {
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #6495ed;
+    
+    
 }
 
 * {box-sizing: border-box;}
@@ -109,3 +120,5 @@ body {
 .form-container .btn:hover, .open-button:hover {
     opacity: 1;
 }
+
+
