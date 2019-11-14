@@ -73,21 +73,16 @@ function update_status($tid, $new_status) {
 		$status = 1;
 	}
 
-	// Branch 2 - Set to "In Progress"
-	if ($new_status == "In Progress") {
+	// Branch 2 - Set to "Closed - Pending Approval"
+	// Send Email to provided email
+	if ($new_status == "Closed - Pending Approval") {
 		$status = 2;
 	}
 
-	// Branch 3 - Set to "Closed - Pending Approval"
-	// Send Email to provided email
-	if ($new_status == "Closed - Pending Approval") {
-		$status = 3;
-	}
-
-	// Branch 4 - Set to "Closed"
+	// Branch 2 - Set to "Closed"
 	// Send Email to provided email
 	if ($new_status == "Closed") {
-		$status = 4;
+		$status = 3;
 	}
 
 	// Update Query
@@ -115,7 +110,7 @@ function get_all_tickets() {
 	$db = connectDB();
 	
 	$query = "SELECT * FROM tickets
-		  ORDER BY status";
+		  		ORDER BY status";
 	
 	$statement = $db->prepare($query);
 	$stateexec = $statement->execute();
