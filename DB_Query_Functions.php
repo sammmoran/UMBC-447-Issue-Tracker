@@ -52,7 +52,7 @@ function add_comment($tid, $name, $comment) {
 
 	date_default_timezone_set("America/New_York");
 	$currdatetime = date("Y-m-d h:i:s");
-	
+
 	$db->query("INSERT INTO comments(tid, name, comment, date)
 							VALUES ($tid, '$name', '$comment', '$currdatetime');");
 
@@ -99,13 +99,16 @@ function update_status($tid, $new_status) {
 }
 
 // Delete a Ticket
-/*function delete_ticket(ticket_id) {
+function delete_ticket($tid) {
 	// Connect to the Database
-	$pdo = new PDO('mysql:host=localhost;port=3306;dbname=issue_tracker','cmsc447', 'demo');
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$db	= connectDB();
 
+	// Delete Query
+	$query = "DELETE * FROM tickets WHERE tid=$tid;";
+	$ret = $db->query($query);
 
-}*/
+	return 0;
+}
 
 function get_all_tickets() {
 	// Connect to the Database	
