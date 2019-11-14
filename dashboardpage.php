@@ -5,6 +5,8 @@
 		<link rel="stylesheet" href="styles/dashboardpage.css">            
 	</head>
 	<body>
+        <button onclick="location.href='newTicket.html'" type="button" class="Ticket">
+         Create New Ticket</button>
         <h1 ><center>DASHBOARD</center></h1>
 		<table>
 		<?php 
