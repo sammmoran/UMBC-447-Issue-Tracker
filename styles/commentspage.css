@@ -6,10 +6,12 @@ p{
 h3 {  
     display:inline-block;
     width: 100%;
-    padding-right: 25px;
+    padding-right: 15px;
+    padding-left: 15px;
     padding-top: 10px;
+    padding-bottom: 10px;
     white-space: nowrap;
-    background-color: lightgray;
+    background-color: rgb(167, 178, 201);
     border: 1px solid black;
 }
 

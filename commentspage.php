@@ -30,7 +30,7 @@
       }     
 
       $ticketDetails = get_ticket_details($tid);
-      echo "<br><h3>" . $ticketDetails['title'] . "<br>" . $ticketDetails['description'] . "</h3><br><br>";
+      echo "<br><h3>--- " . $ticketDetails['title'] . " ---<br><br>" . $ticketDetails['description'] . "</h3><br><br>";
 
     ?> 
 
