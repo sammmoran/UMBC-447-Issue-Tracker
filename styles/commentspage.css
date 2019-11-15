@@ -2,14 +2,15 @@ p{
     
     line-height: normal;
 }
-h3{
-    
+
+h3 {  
     display:inline-block;
+    width: 100%;
     padding-right: 25px;
     padding-top: 10px;
     white-space: nowrap;
-    background-color: antiquewhite;
-    border-left: 5px solid blue;
+    background-color: lightgray;
+    border: 1px solid black;
 }
 
 table, td {  

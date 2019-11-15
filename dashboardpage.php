@@ -28,23 +28,23 @@
 				We want to do something about the history column. Could be links. But it needs to be a way
 				that the code returns a page with the ticket history.
 			*/
-			echo"<table boarder = 1>";
+			echo"<table border = 1>";
 			echo"<tr>
-			<th>Id</th>
-			<th>Issue Title</th>
+			<th>ID</th>
 			<th>Status</th>
-			<th>ServiceAgent</th>
-            <th>ServiceAgent Email</th>
+			<th>Issue Title</th>
+			<th>Ticket Owner</th>
+            <th>Owner Email</th>
             <th>Date</th>
-			<th>Comment History</th>
+			<th width='15%'>Comment History</th>
 			</tr>";
         
 			$store = get_all_tickets();
 			foreach($store as $ticket){
 				echo"<tr>";
-				echo "<td>" . $ticket['tid'] . "</td>";
-				echo "<td>" . $ticket['title'] . "</td>";
-				echo "<td>" . $ticket['status'] . "</td>";
+				echo "<td width='5%'>" . $ticket['tid'] . "</td>";
+				echo "<td width='5%'>" . $ticket['status'] . "</td>";
+				echo "<td width='15%'>" . $ticket['title'] . "</td>";
 				echo "<td>" . $ticket['poc_name'] . "</td>";
 				echo "<td>" . $ticket['poc_email'] . "</td>";
 				echo "<td>" . $ticket['modified_date'] . "</td>";
