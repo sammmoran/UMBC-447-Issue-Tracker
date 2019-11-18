@@ -21,7 +21,6 @@
     <button onclick="location.href='dashboardpage.php'" type="button" class="backbutton">
          BACK TO THE DASHBOARD</button>
     
-        <h2>Ticket Description</h2>
     <?php
       if ($_GET) {
         $tid = $_GET['tid'];     
@@ -30,8 +29,8 @@
         $tid = $_POST['tid'];
       }     
 
-      $desc = get_ticket_description($tid);
-      echo "<h3>" . $desc['description'] . "</h3><br><br>";
+      $ticketDetails = get_ticket_details($tid);
+      echo "<br><h3>--- " . $ticketDetails['title'] . " ---<br><br>" . $ticketDetails['description'] . "</h3><br><br>";
 
     ?> 
 
@@ -41,27 +40,25 @@
 		
 			echo"<table border = 1>";
 			echo"<tr>
-			<th><b>Comment ID</b></th>
-			<th><b>Ticket ID</b></th>
+			<th><b>Date</b></th>
 			<th><b>Commentator</b></th>
 			<th><b>Comment</b></th>
-			<th><b>Date</b></th>
 			</tr>";
 			
 			
 			foreach($store as $comment){
 				echo"<tr>";
-				echo "<td>" . $comment['cid'] . "</td>";
-				echo "<td>" . $comment['tid'] . "</td>";
-				echo "<td>" . $comment['name'] . "</td>";
-				echo "<td>" . $comment['comment'] . "</td>";
-				echo "<td>" . $comment['date'] . "</td>";				
+				echo "<td width='10%'>" . $comment['date'] . "</td>";	
+				echo "<td width='15%'>" . $comment['name'] . "</td>";
+				echo "<td>" . $comment['comment'] . "</td>";			
 				echo"</tr>";
 			}
 		?>
-	
+
 	</table>
     
+	<br><br><br><br><br><br>
+
 	<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
 
 	<div class="form-popup" id="myForm">

@@ -86,9 +86,7 @@ function update_status($tid, $new_status) {
 	}
 
 	// Update Query
-	$db->query("UPDATE tickets 
-					SET status=$status
-					WHERE tid=$tid;");
+	$db->query("UPDATE tickets SET status=$status WHERE tid=$tid;");
 
 	return 0;
 }
@@ -99,9 +97,8 @@ function delete_ticket($tid) {
 	$db	= connectDB();
 
 	// Delete Query
-	$query = "DELETE * FROM tickets WHERE tid=$tid;";
+	$query = "DELETE FROM tickets WHERE tid=$tid;";
 	$ret = $db->query($query);
-
 	return 0;
 }
 
@@ -119,10 +116,10 @@ function get_all_tickets() {
 	return $ret;
 }
 
-function get_ticket_description($tid) {
+function get_ticket_details($tid) {
 	$db = connectDB();
 	
-	$query = "SELECT description FROM tickets WHERE tid=$tid;";
+	$query = "SELECT title,description FROM tickets WHERE tid=$tid;";
 	$ret = $db->query($query);
 	$ret = $ret->fetch(PDO::FETCH_ASSOC);
 	return $ret;
