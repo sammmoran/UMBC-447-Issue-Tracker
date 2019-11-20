@@ -28,7 +28,18 @@
 		foreach($store as $ticket){
 			echo"<tr>";
 			echo "<td width='5%'>" . $ticket['tid'] . "</td>";
-			echo "<td width='5%'>" . $ticket['status'] . "</td>";
+			if ($ticket['status'] == 1){
+				echo "<td width='5%'> Open </td>";				
+			}
+			elseif ($ticket['status'] == 2){
+				echo "<td width='5%'> Requested Closure </td>";				
+			}
+			elseif ($ticket['status'] == 3){
+				echo "<td width='5%'> Closed </td>";				
+			}
+			else{
+				echo "<td width='5%'> Error </td>";
+			}
 			echo "<td width='15%'>" . $ticket['title'] . "</td>";
 			echo "<td>" . $ticket['poc_name'] . "</td>";
 			echo "<td>" . $ticket['poc_email'] . "</td>";
