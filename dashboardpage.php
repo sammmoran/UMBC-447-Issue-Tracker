@@ -6,7 +6,7 @@
 	</head>
 	<body>
         <button onclick="location.href='newTicket.html'" type="button" class="Ticket">
-         Create New Ticket</button>
+         Create Ticket</button>
         <h1 ><center>DASHBOARD</center></h1>
 		<table>
 		<?php 		
@@ -41,7 +41,7 @@
 			
 			echo '<form action="./delete_ticket.php" method="post">';
 			echo '<input type="hidden" name="del_tid" id="del_tid" value="' . $ticket['tid'] . '">';
-			echo '<input type = "submit" value="Delete">';
+			echo '<input type = "submit" value="Delete" class="delete" >';
 			echo '</form></td>';
 			echo"</tr>";
 		}

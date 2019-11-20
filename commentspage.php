@@ -18,8 +18,9 @@
   </head>
   
 	<body>
+        
     <button onclick="location.href='dashboardpage.php'" type="button" class="backbutton">
-         BACK TO THE DASHBOARD</button>
+         DASHBOARD</button>
     
     <?php
       if ($_GET) {
@@ -34,6 +35,7 @@
 
     ?> 
 
+    <center><h1>COMMENTS</h1></center>
 	<table>
 		<?php 
      		$store = get_comments_by_ticket($tid);
