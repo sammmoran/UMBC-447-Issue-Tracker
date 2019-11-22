@@ -68,22 +68,25 @@ function update_status($tid, $new_status) {
 	// Connect to the Database
 	$db = connectDB();
 
-	// Branch 1 - Set to "Open"
-	if ($new_status == "Open") {
+/*	// Branch 1 - Set to "Open"
+	if ($new_status == "1") {
 		$status = 1;
 	}
 
 	// Branch 2 - Set to "Closed - Pending Approval"
 	// Send Email to provided email
-	if ($new_status == "Closed - Pending Approval") {
+	if ($new_status == "2") {
 		$status = 2;
 	}
 
 	// Branch 2 - Set to "Closed"
 	// Send Email to provided email
-	if ($new_status == "Closed") {
+	if ($new_status == "3") {
 		$status = 3;
 	}
+*/
+
+	$status = $new_status;
 
 	// Update Query
 	$db->query("UPDATE tickets SET status=$status WHERE tid=$tid;");

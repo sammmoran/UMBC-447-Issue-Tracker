@@ -51,19 +51,22 @@
 			echo "</form>";
 
 			if ($ticket['status'] == 1){
-				echo '<form action="./requestclose.php" method="post">';
+				echo '<form action="./update_status.php" method="post">';
 				echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type="hidden" name="status" id="status" value="2">';
 				echo '<input type = "submit" value="Request Closure">';
 				echo "</form>";			
 			}
 			elseif ($ticket['status'] == 2){
-				echo '<form action="./closeticket.php" method="post">';
+				echo '<form action="./update_status.php" method="post">';
 				echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type="hidden" name="status" id="status" value="3">';
 				echo '<input type = "submit" value="Confirm Closure">';
 				echo "</form>";
 
-				echo '<form action="./openticket.php" method="post">';
+				echo '<form action="./update_status.php" method="post">';
 				echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type="hidden" name="status" id="status" value="1">';
 				echo '<input type = "submit" value="Reopen Ticket">';
 				echo "</form>";
 			}
