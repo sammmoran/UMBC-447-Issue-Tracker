@@ -35,11 +35,10 @@
 
     ?> 
 
-    <center><h1>COMMENTS</h1></center>
+    <center><h1 class="header">COMMENTS</h1></center>
 	<table>
 		<?php 
      		$store = get_comments_by_ticket($tid);
-		
 			echo"<table border = 1>";
 			echo"<tr>
 			<th><b>Date</b></th>
