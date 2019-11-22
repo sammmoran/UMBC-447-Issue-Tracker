@@ -15,13 +15,13 @@
 
 		echo"<table border = 1>";
 		echo"<tr>
-		<th>ID</th>
+		<th>TID</th>
 		<th>Status</th>
 		<th>Issue Title</th>
 		<th>Ticket Owner</th>
 		<th>Owner Email</th>
 		<th>Date</th>
-		<th width='15%'>Comment History</th>
+		<th width='15%'>Actions</th>
 		</tr>";
 	
 		$store = get_all_tickets();
@@ -29,10 +29,10 @@
 			echo"<tr>";
 			echo "<td width='5%'>" . $ticket['tid'] . "</td>";
 			if ($ticket['status'] == 1){
-				echo "<td width='5%'> Open </td>";				
+				echo "<td width='5%'> Open </td>";			
 			}
 			elseif ($ticket['status'] == 2){
-				echo "<td width='5%'> Requested Closure </td>";				
+				echo "<td width='5%'> Requested Closure </td>";
 			}
 			elseif ($ticket['status'] == 3){
 				echo "<td width='5%'> Closed </td>";				
@@ -47,14 +47,33 @@
 			
 			echo '<td> <form action="./commentspage.php" method="post">';
 			echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
-			echo '<input type = "submit" value="Check History">';
+			echo '<input type = "submit" value="View Comments">';
 			echo "</form>";
+
+			if ($ticket['status'] == 1){
+				echo '<form action="./requestclose.php" method="post">';
+				echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type = "submit" value="Request Closure">';
+				echo "</form>";			
+			}
+			elseif ($ticket['status'] == 2){
+				echo '<form action="./closeticket.php" method="post">';
+				echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type = "submit" value="Confirm Closure">';
+				echo "</form>";
+
+				echo '<form action="./openticket.php" method="post">';
+				echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+				echo '<input type = "submit" value="Reopen Ticket">';
+				echo "</form>";
+			}
 			
 			echo '<form action="./delete_ticket.php" method="post">';
 			echo '<input type="hidden" name="del_tid" id="del_tid" value="' . $ticket['tid'] . '">';
 			echo '<input type = "submit" value="Delete" class="delete" >';
-			echo '</form></td>';
-			echo"</tr>";
+			echo '</form>';
+
+			echo"</td></tr>";
 		}
 		?>
 		</table>
