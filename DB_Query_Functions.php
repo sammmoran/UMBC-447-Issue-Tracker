@@ -50,11 +50,16 @@ function add_comment($tid, $name, $comment) {
 	// Connect to the Database
 	$db = connectDB();
 
+	// Get the comment submission datetime
 	date_default_timezone_set("America/New_York");
 	$currdatetime = date("Y-m-d h:i:s");
 
-	$db->query("INSERT INTO comments(tid, name, comment, date)
-							VALUES ($tid, '$name', '$comment', '$currdatetime');");
+	// Create Query
+	$query = 'INSERT INTO comments(tid,name,comment,date) VALUES(:tid,:name,:comment,:currdatetime)';
+
+	// Prepare and send query
+	$sqprep = $db->prepare($query);
+	$sqexec = $sqprep->execute(array(":tid"=>$tid, ":name"=>$name, ":comment"=>$comment, "currdatetime"=>$currdatetime));
 
 	return 0;
 }
