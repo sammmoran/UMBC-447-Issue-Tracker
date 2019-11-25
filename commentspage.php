@@ -2,8 +2,29 @@
   
   require('DB_Query_Functions.php');
   
+  function validComment($comment, $name){
+	  
+		$ret = "";
+		
+		if (strlen($name) > 64){
+			$ret = $ret."Your name should be less than 64 characters \n";
+			$ret = $ret."<br>";	
+		}
+		
+		if (strlen($comment) > 65000){
+			$ret = $ret."Please keep your comments concise (less than 65,000 characters) \n";
+			$ret = $ret."<br>";
+		}
+
+		return $ret;
+	  
+  }
+  
   if ( isset($_POST['name']) && isset($_POST['comment']) && isset($_POST['tid']) ) {
-    add_comment( $_POST['tid'], $_POST['name'], $_POST['comment'] );
+	  if (strlen(validComment($_POST['comment'], $_POST['name'])) == 0){
+		  	add_comment( $_POST['tid'], $_POST['name'], $_POST['comment'] );
+	  }
+
     $tid = $_POST['tid'];
     header('Location: commentspage.php?tid='. $tid);
     exit();
