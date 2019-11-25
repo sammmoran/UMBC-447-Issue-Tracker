@@ -47,6 +47,8 @@
 			
 			echo '<td> <form action="./commentspage.php" method="post">';
 			echo '<input type="hidden" name="tid" id="tid" value="' . $ticket['tid'] . '">';
+			echo '<input type="hidden" name="status" id="status" value="' . $ticket['status'] . '">';
+			
 			echo '<input type = "submit" value="View Comments">';
 			echo "</form>";
 

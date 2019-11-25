@@ -23,7 +23,7 @@
 	
 	// Pass to database
 	// Will return 0 if it works; -1 if fails
-	if (add_ticket($title, $poc_name, $poc_email, $description) == 0){
+	elseif (add_ticket($title, $poc_name, $poc_email, $description) == 0){
 		header("refresh:2;url=dashboardpage.php");		
 		echo "Your new ticket has been added! \n";
 		echo "<br>";

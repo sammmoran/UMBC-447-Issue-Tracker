@@ -24,10 +24,12 @@
     
     <?php
       if ($_GET) {
-        $tid = $_GET['tid'];     
+        $tid = $_GET['tid'];
+		$status = 1;
       }
       else {
         $tid = $_POST['tid'];
+		$status = $_POST['status'];
       }     
 
       $ticketDetails = get_ticket_details($tid);
@@ -59,7 +61,10 @@
 	</table>
     
 	<br><br><br><br><br><br>
-
+	<?php
+	if($status < 3)
+	{
+		echo(<<<EOS
 	<button class="open-button" onclick="openForm()"><b>ADD COMMENT<b></button>
 
 	<div class="form-popup" id="myForm">
@@ -74,7 +79,7 @@
 			
 			<button name="submit" type="submit" class="btn">Add Comment</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      <input type="hidden" name="tid" id="tid" value='<?php echo "$tid";?>'/>
+      <input type="hidden" name="tid" id="tid" value='$tid'/>
 		  </form>
     </div>
 
@@ -87,8 +92,12 @@
 		  document.getElementById("myForm").style.display = "none";
 		}
 		</script>
-
-		
+EOS
+);
+	}
+	
+	
+	?>		
 		
 	</body>
 </html>

@@ -22,7 +22,7 @@
 		}
 		
 		if (strlen($description) > 65000){
-			$ret = $ret."Please keep your comments concise (less than 65,000 characters \n";
+			$ret = $ret."Please keep your comments concise (less than 65,000 characters) \n";
 			$ret = $ret."<br>";
 		}
 
