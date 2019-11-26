@@ -20,6 +20,11 @@
 	  
   }
   
+  if (!isset($_POST['tid']) && !isset($_GET['tid'])){
+		header('Location: index.php');
+    exit();  
+  }
+   
   
   if ( isset($_POST['name']) && isset($_POST['comment']) && isset($_POST['tid']) ) {
 	
