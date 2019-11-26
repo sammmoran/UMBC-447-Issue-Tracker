@@ -6,10 +6,10 @@
 		Capture variables from newTicket.html file.
 		Organize data and validate. 
 	*/
-	$title = $_POST['title'];
-	$poc_name = $_POST['poc_name'];
-	$poc_email = $_POST['poc_email'];
-	$description = $_POST['description'];
+	$title = htmlspecialchars($_POST['title']);
+	$poc_name = htmlspecialchars($_POST['poc_name']);
+	$poc_email = htmlspecialchars($_POST['poc_email']);
+	$description = htmlspecialchars($_POST['description']);
 	
 	$valInput = validateNewTicket($title, $poc_name, $poc_email, $description);
 	if (strlen($valInput) > 1){

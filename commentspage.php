@@ -20,9 +20,14 @@
 	  
   }
   
+  
   if ( isset($_POST['name']) && isset($_POST['comment']) && isset($_POST['tid']) ) {
-	  if (strlen(validComment($_POST['comment'], $_POST['name'])) == 0){
-		  	add_comment( $_POST['tid'], $_POST['name'], $_POST['comment'] );
+	
+	$comment = htmlspecialchars($_POST['comment']);
+	$name = htmlspecialchars($_POST['name']);
+	
+	if (strlen(validComment($comment,$name)) == 0){
+		  	add_comment($_POST['tid'], $name, $comment);
 	  }
 
     $tid = $_POST['tid'];
