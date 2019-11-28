@@ -69,7 +69,7 @@
     ?> 
 
     <center><h1 class="header">COMMENTS</h1></center>
-	<table>
+	<center><table>
 		<?php 
      		$store = get_comments_by_ticket($tid);
 			echo"<table border = 1>";
@@ -89,7 +89,7 @@
 			}
 		?>
 
-	</table>
+        </table></center>
     
 	<br><br><br><br><br><br>
 	<?php
