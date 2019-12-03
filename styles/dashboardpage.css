@@ -12,8 +12,8 @@ table, td{
 table, td, th {  
     text-align: left;
     border: 1px solid black;
-    max-width:700px;
-    word-wrap:break-word;
+    max-width:1500px;
+	
 
 }
 
@@ -38,6 +38,10 @@ tr {
 
 th, td {
     padding: 15px;
+	width: 250px; // width can be depend on you
+    white-space: normal;
+    word-break: break-word;
+    
     
 }
 
