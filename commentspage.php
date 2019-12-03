@@ -102,8 +102,8 @@
 		<form action="./commentspage.php" class="form-container" method="post">
 		<h1>Add Comment</h1>
 
-			<label for="name"><b>Name</b></label>
-			<textarea type="text" placeholder="Enter Name" name="name" required></textarea>
+			<label for="name" ><b>Name</b></label>
+			<textarea type="text" maxlength="64" placeholder="Enter Name" name="name" required></textarea>
 
 			<label for="comment"><b>Comment</b></label>
 			<textarea type="text" placeholder="Enter Comment" name="comment" required></textarea>
